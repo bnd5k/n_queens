@@ -1,10 +1,7 @@
 #must accept argument for queens
-#must creat board based on # of queens.
+#must create board based on # of queens.
 #Maybe "How many queens are there?"  And then the value returned will be the board size
 #
-#initialize should
-#1) setup the board
-#2) set the queens in the same row
 #
 n = 8
 #setup board
@@ -15,12 +12,8 @@ n = 8
     print " \n"
 end
 #replace row 1 with queens
- 
 n.times { print 'q' }
 
-#queens problem is essentially a compbination of rook's problem and bishop's problem.  Must
-#find solutions where board congifuration is same in both.
-#
 #What's the workflow of this program?
 #based on an input, it creates a board
 #then generates a solution
@@ -59,5 +52,59 @@ puts my_array
 #moving pieces = changing values in array.  
 
 
-Rule: queen should only move up or down in the column.
-  
+#new plan:
+# when user inputs n, then generate an array of O's.  How many? n*n.
+# then make the first entry in the array a 'q'
+# or really, just make [0] a 'c', make [8] into a 'q', six times do add 8 to current
+# position and convert that to 'c'].
+#
+# what is the logic behind rows?
+# You could say that each array is a row.  Then you'd need n arrays.
+#Then you have to worry about where the queen is in each array.  Need rules for how arrays
+#can be scructured and those roles must be based off other arrays.
+#
+# row1 = Array[o,o,o,o]
+# row2 = Array[q,o,o,o]
+# row3 = Array[o,o,o,o]
+# row4 = Array[o,o,o,o]
+
+# Array[n+1]
+# If row2[0] == 'q'
+#   row1[0] == 'c'
+#   row1[1] == 'c'
+#
+#   row2[1] == 'c'
+#   row2[2] == 'c'
+#   row2[3] == 'c'
+
+#   row3[0] == 'c'
+#   row3[1] == 'c'
+#
+#   row4[1] == 'c'
+#   row3[3] == 'c'
+
+#end
+#There's gotta be a a rule where you actually change values.
+# if 'q' is found in array, then convert all 'o's to 'c's.
+#   And find the array no (e.g. [0], and for each array, change that corresponding number's
+#   value to '0'. 
+#   And find the diagonal by taking the position of q, adding 1, heading to the next array and then making that a c.
+#   and turning it into  a new variable
+
+# step 1 should always be to pop a value in row2, [0] 
+# then, do an if statemenet, that says if there a q there, then block out all this other shit. (per code above)
+# Then what? Maybe take note of where the queen in col 1 is and then start investigating col  2.
+# 
+# Put a q in row
+#
+# ary1 = o,o,o,o,o,o,o,o
+# ary2 = o,o,o,o,o,o,o,o
+# ary3 = o,o,o,o,o,o,o,o
+# ary4 = o,o,o,o,o,o,o,o
+# ary5 = o,o,o,o,o,o,o,o
+# ary6 = o,o,o,o,o,o,o,o
+# ary7 = o,o,o,o,o,o,o,o
+# ary8 = o,o,o,o,o,o,o,o
+# ary9 = o,o,o,o,o,o,o,o
+#
+#
