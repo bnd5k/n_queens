@@ -5,23 +5,20 @@ puts "How many queens are there?"
 print '> '
 n = STDIN.gets.chomp().to_i
 
-#setup variables
+#set up variables
 if n.even?
-  #first = (n/2) + 1
   first_queen_in_array = (n/2)+1
-  first_queen_in_array.to_i
-  my_interval = n+1
-  # you have n number of intervals
   sm_intv = n/2
   lg_intv = (n+1) + sm_intv
-
 else
-  #first  = (n+1)/2
-  first  = ( (n+1)/2 ) - 1
+  first_queen_in_array = (n+1)/2
+  sm_intv = (n+1)/2
+  lg_intv = (n) + sm_intv
 end
-first.to_i
+  first_queen_in_array.to_i
 
-#determine intervals
+#determine interval
+#This strategy provides an extra number in the array that isn't used but it's no biggies
 my_intv = 1
 queen_array = [first_queen_in_array]
 
@@ -29,20 +26,6 @@ queen_array = [first_queen_in_array]
     queen_array << sm_intv
     queen_array << lg_intv
 end
-  #  queen_array << first_queen_in_array
-  #  queen_array << sm_intv
-  #  queen_array << lg_intv
-  #  my_intv = 1
-  #  puts my_intv
-#  if my_intv = 1
-#    queen_array << sm_intv
-#    my_intv = 2
-#  else my_intv = 2  
-#    queen_array << lg_intv
-#    my_intv = 1
-#  end
-# # puts queen_array
-#end
 puts queen_array # => [3,2, 7,2]
 
 #translate intervals to positions on boad
