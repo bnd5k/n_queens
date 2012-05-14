@@ -5,6 +5,11 @@ puts "How many queens are there?"
 print '> '
 n = STDIN.gets.chomp().to_i
 
+if n < 4
+  puts "No dice!  The NQueen problem is only solvable when n >  3"
+  exit
+end
+
 #set up variables
 if n.even?
   first_queen_in_array = (n/2)+1
