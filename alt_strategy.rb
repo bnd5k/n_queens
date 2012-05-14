@@ -11,4 +11,22 @@ end
 #
 # untill...when?  until the end of the array, I guess.  You'll have to define the array as
 # haveing n*n members.
+
+
 #
+#This approach is for building an array
+board = ['o']
+while board.size < (n*n)
+  if board.size ==  first_queen_in_array  
+    new_item = 'Queen'
+  elsif board.size ==  first_queen_in_array + interval_1 
+    new_item = 'Queen'
+  elsif board.size ==  first_queen_in_array + interval_1 + interval_2
+    new_item = 'Queen'
+  elsif board.size ==  first_queen_in_array + interval_1 + interval_2 + interval_1
+    new_item = 'Queen'
+  else
+    new_item = 'o'
+  end
+  board << new_item
+end
