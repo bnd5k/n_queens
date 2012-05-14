@@ -44,7 +44,21 @@ queen_array.each do |item|
 end
 #puts qe2 # =>  [3,5,12,14]
 
+#construct the initial layout of the board
+puts "\n Here is the initial state of the chess board.\n"
+n.times  {print 'Q'}
+print " \n"
+ (n-1).times do 
+    n.times do
+      print '*' 
+    end
+    print "  \n"
+end
+#replace row 1 with queens
+
+
 #now construct the board
+puts "\n Here is the solution. \n"
 board = ['*']
 while board.size < (n*n)
   if qe2.include?(board.size)
