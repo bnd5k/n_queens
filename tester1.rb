@@ -26,7 +26,7 @@ queen_array = [first_queen_in_array]
     queen_array << sm_intv
     queen_array << lg_intv
 end
-puts queen_array # => [3,2, 7,2]
+#puts queen_array # => [3,2, 7,2]
 
 #translate intervals to positions on boad
 # qe2 takes the intervals from above and turns it into an array that lists where queens should be on the board.
@@ -40,16 +40,19 @@ end
 #puts qe2 # =>  [3,5,12,14]
 
 #now construct the board
-board = ['o']
+board = ['*']
 while board.size < (n*n)
   if qe2.include?(board.size)
-    new_item = 'Queen'
+    new_item = 'Q'
   else
-    new_item = 'o'
+    new_item = '*'
   end
   board << new_item
 end
+my_board = board.each_slice(n).to_a
+#print board
+my_board.each do |sub_array|
+  nub = sub_array.join
+  puts nub
+end
 
-
-puts board
-puts board.size
