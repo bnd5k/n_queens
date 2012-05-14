@@ -19,25 +19,23 @@ class Nqueen
       @interval_sequence << @sm_intv
       @interval_sequence << @lg_intv
     end
-    #puts  @interval_sequence# => [3,2, 7,2]
+    #puts @interval_sequence #=> [3,2, 7,2]
   end
 
   def translate_intervals_into_board_positions(n)
-    # takes the intervals from above and turns it into an array that lists where queens should be on the board.
-    # This code actually makes an array that's offset from the true positions by 1.  That's because the construct_solution_board method relies on the position alread being included in the array
-    # (per includ method)
+    # takes the interval sequence and turns it into an array of where the queens should be positioned. 
+    # Note: the tranlsated interval sequence ultimately yields a list of the positions that are prior to where a queen will go.
+    # That's because the construct_solution_board method relies on the position alread being included in the array
     @queen_array = []
     sum = 0
     @interval_sequence.each do |item|
       sum = sum + item  
-      @queen_array << sum-1 #minus 1 is there because of the inlcude? method below. That method verifies that a number (board.size) is ALREADY in the array.  So the -1 allows
-      # the << new_item code to add the queen at the correct point.
+      @queen_array << sum-1 
     end
-    #puts @queen_array  # =>  [3,5,12,14]
+    #puts @queen_array #=> [3,5,12,14]
   end
 
   def initial_state_of_chessboard(n)
-    #construct the initial layout of the board
     puts "\n Here is the initial state of the chess board.\n"
     n.times  {print 'Q'}
     print " \n"
@@ -67,7 +65,6 @@ class Nqueen
       puts nub
     end
   end
-
 
 end
 
