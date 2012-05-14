@@ -5,51 +5,36 @@ puts "How many queens are there?"
 print '> '
 n = STDIN.gets.chomp().to_i
 
-#create board
-#board = Array.new
-#(n*n).times { board << 'o' }
-
-#puts board
-
 if n.even?
-  sm = (n/2) + 1
+  #first = (n/2) + 1
+  first = (n/2)
 else
-  sm = (n+1)/2
+  #first  = (n+1)/2
+  first  = ( (n+1)/2 ) - 1
 end
-#puts sm
+first.to_i
+#puts first
 
-lg = n+1
-#puts lg
+interval_1 = n/2
+interval_2 = interval_1 + n+1
+interval_1.to_i
+interval_2.to_i
 
-#board[sm] == 'q'
-#puts board[sm]
-#poop = []
-#board.map do |item|
-#  if item == item[sm]
-#    item == 'q'
-#  end
-#  poop << item
-#end
-#puts poop
 
-#board = []
-#while board.size <= (n*n)
+#need variable for first queen (currently, sm)
+#
+#need variable for each phase of algo
 
-#end
-sm.to_i
-lg.to_i
-puts sm
-puts lg#
 #This approach is for building an array
 board = ['o']
-while board.size <= (n*n)
-  if board.size == sm-1
+while board.size < (n*n)
+  if board.size == first 
     new_item = 'Queen'
-  elsif board.size == sm + lg
+  elsif board.size ==  first  + interval_1 
     new_item = 'Queen'
-  elsif board.size == sm + lg + sm 
+  elsif board.size == first + interval_1 + interval_2
     new_item = 'Queen'
-  elsif board.size == sm + lg + sm + lg
+  elsif board.size == first + interval_1 + interval_2 + interval_1
     new_item = 'Queen'
   else
     new_item = 'o'
@@ -58,4 +43,4 @@ while board.size <= (n*n)
 end
 
 puts board
-
+puts board.size
