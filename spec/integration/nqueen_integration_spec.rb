@@ -1,26 +1,22 @@
 require 'rspec'
 require './lib/nqueen.rb'
 
-describe 'Nqeen' do
+#mappings = { 
+#            4 => "**Q*\nQ***\n***Q\n*Q**",
+#            5 => "**Q**\nQ****\n***Q*\n*Q***\n****Q\n"
+#            }
+describe 'Nqueen' do
 
   it "outputs the correct position of the first queen" do
-    test = Nqueen.new(4)
-    #puts test.public_methods(false).inspect
-    test.determine_location_of_first_queen.should == 3
-
-  end
-
-  it "displays the terminal state of the chessboard" do
     test = Nqueen.new(5)
-    output_string = <<-STR
-**Q**
-Q****
-***Q*
-*Q***
-****Q
-STR
-    test.solve_puzzle.should == output_string
+    test.determine_location_of_first_queen.should == 3
+    
   end
 
+#  mappings.each do |num, solution|         
+    it "displays the Queens correctly on an n by n chessboard" do
+      test = Nqueen.new(4)
+      test.solve_puzzle.should ==  "**Q*\nQ***\n***Q\n*Q**"
+    end
+#  end
 end
-

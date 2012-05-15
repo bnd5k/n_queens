@@ -70,9 +70,9 @@ class Nqueen
     # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
     puts "\n Here is the solution. \n"
     solution_as_array = @board.each_slice(@number_of_queens)
-    return_string = ""
-    answer_row = solution_as_array.map{|a| a.join}
-    answer_row.join("\n")
+    solution_as_array.each do |sub_array|
+      puts sub_array.join
+    end
   end
 
 end
