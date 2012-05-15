@@ -14,7 +14,6 @@ class Nqueen
     terminal_state_of_chessboard
   end
 
-
   def determine_location_of_first_queen
     if @number_of_queens.even?
       @first_queen_in_array = ( @number_of_queens / 2 ) + 1 
@@ -47,8 +46,6 @@ class Nqueen
     # turns the interval sequence into a list of the positions--not of queens, but of positions prior to a queen.
     # (Why the position prior? That's because the construct_solution_array method relies on the position already being included in the array.)
     @queen_array = []
-    #sum = 0
-    #@interval_sequence.each do |location|
     @interval_sequence.inject(0) do |sum, location|
       sum += location
       @queen_array << sum - 1
@@ -68,14 +65,14 @@ class Nqueen
       @board << new_item
     end
   end
-end
 
   def terminal_state_of_chessboard
     # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
     puts "\n Here is the solution. \n"
-    solution_as_array = @board.each_slice(@number_of_queens).to_a
+    solution_as_array = @board.each_slice(@number_of_queens)
     solution_as_array.each do |sub_array|
-      solution_row  = sub_array.join
-      puts solution_row
+      puts sub_array.join
     end
   end
+
+end
