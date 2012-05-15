@@ -1,8 +1,19 @@
 class Nqueen
+
   def initialize(n)
     @number_of_queens = n
     @empty_space = '*'
   end
+
+  def solve_puzzle
+    determine_location_of_first_queen
+    determine_interval_lengths
+    generate_alternating_sequence_of_intervals
+    translate_intervals_into_board_positions
+    construct_solution_array
+    terminal_state_of_chessboard
+  end
+
 
   def determine_location_of_first_queen
     if @number_of_queens.even?
@@ -36,11 +47,12 @@ class Nqueen
     # turns the interval sequence into a list of the positions--not of queens, but of positions prior to a queen.
     # (Why the position prior? That's because the construct_solution_array method relies on the position already being included in the array.)
     @queen_array = []
-    sum = 0
-    @interval_sequence.each do |location|
-    #@interval_sequence.inject(0) do |sum, item|
+    #sum = 0
+    #@interval_sequence.each do |location|
+    @interval_sequence.inject(0) do |sum, location|
       sum += location
-      @queen_array << sum - 1 
+      @queen_array << sum - 1
+      sum
     end
   end
 
@@ -56,7 +68,8 @@ class Nqueen
       @board << new_item
     end
   end
-  
+end
+
   def terminal_state_of_chessboard
     # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
     puts "\n Here is the solution. \n"
@@ -66,4 +79,3 @@ class Nqueen
       puts solution_row
     end
   end
-end

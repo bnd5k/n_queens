@@ -1,33 +1,41 @@
 require 'rspec'
-require './lib/solution.rb'
+require './lib/nqueen.rb'
 
 initial_queen_positions  = {
                             4 => [3, 2, 7] 
                             }
-sm_interval = {
-               4 => 2
+intervals = {
+               4 => [2,7]
               }
 
-lg_interval = {
-               4 => 7
-              }
 
-interval_values = {
+queen_pattern = {
                     4 => [3, 2, 7, 2]
                   }              
-sequence_values = {
+
+queen_location = {
+                  4 => [3,5,12,14]  
+                  }                  
+                  
+success_array_values = {
                     4 => "**Q*Q******Q*Q**" 
                   }
 
-describe Nqueen do
+
+
+
+
+describe 'Nqueen' do
 
   initial_queen_positions.each do |num, queen|
     it 'determines the first position of a queen' do
-      output = Nqueen.determine_location_of_first_queen(num)
+      @number_of_queens = num
+      output = Nqueen.determine_location_of_first_queen
       output.should == queen
     end
   end
-  initial_queen_positions.each do |num, small_interval, large_interval|
+
+  intervals.each do |num, small_interval, large_interval|
     it 'creates the first position of a queen ' do
       output = Nqueen.determine_interval_lengths(num)
       output.should.sm_intv  ==  small_interval
@@ -35,18 +43,31 @@ describe Nqueen do
     end
   end
   
-  interval_values.each do |num, interval|
+  queen_pattern.each do |num, pattern|
     it 'creates the correct interval sequence fo n queens' do
-      output = Nqueen.determine_intervals_between_queens(num)
-      output.should == interval
+      output = Nqueen.generate_alternating_sequence_of_intervals(num)
+      output.should == pattern
     end
   end
 
-  sequence_values.each do |num, sequence|
+  queen_location.each do |num, location|
+    it 'turns the interval sequence into the correct board positions' do
+      output = Nqueen.translate_intervals_into_board_positionsa(num)
+      output.should == location
+    end
+  end
+
+  success_array_values.each do |num, sequence|
     it 'creates the correct sequence for n queens' do
       output = Nqueen.construct_solution_array(num)
       output.should == sequence
     end
   end
-
+  
+#  final_board_apparance.each do |num, board |
+#    it 'creates an n by n board' do
+#      output = Nqueen.terminal_state_of_chessboard(num)
+#      output.should == board
+#    end
+#  end
 end
