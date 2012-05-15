@@ -21,10 +21,17 @@ sequence_values = {
 
 describe Nqueen do
 
-  initial_queen_positions.each do |num, queen, sm_interval, lg_interval|
+  initial_queen_positions.each do |num, queen|
+    it 'determines the first position of a queen' do
+      output = Nqueen.determine_location_of_first_queen(num)
+      output.should == queen
+    end
+  end
+  initial_queen_positions.each do |num, small_interval, large_interval|
     it 'creates the first position of a queen ' do
-      output = Nqueen.initialize(num)
-      output.should == queen, sm_interval, lg_interval
+      output = Nqueen.determine_interval_lengths(num)
+      output.should.sm_intv  ==  small_interval
+      output.should.lg_intv  ==  large_interval
     end
   end
   

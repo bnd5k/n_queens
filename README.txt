@@ -18,3 +18,9 @@ result that resembles a chessboard.  Taking this array-based approach
 saved me from having to generate logic addressing how queens traverse
 rows and columns.  
 
+To run the program, open your terminal and navigate to the root of the nqueen
+directory.  Type "ruby arrange_queens.rb" and, when prompted, indicate what
+number to use as n.
+
+If you want to run the tests, you must have Rspec installed.  If you type "gem
+install rspec," that should do the trick.
