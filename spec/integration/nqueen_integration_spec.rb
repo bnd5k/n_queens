@@ -1,10 +1,10 @@
 require 'rspec'
 require './lib/nqueen.rb'
 
-#mappings = { 
-#            4 => "**Q*\nQ***\n***Q\n*Q**",
-#            5 => "**Q**\nQ****\n***Q*\n*Q***\n****Q\n"
-#            }
+mappings = { 
+            4 => "**Q*\nQ***\n***Q\n*Q**",
+            5 => "**Q**\nQ****\n***Q*\n*Q***\n****Q\n"
+            }
 describe 'Nqueen' do
 
   it "outputs the correct position of the first queen" do
@@ -13,10 +13,10 @@ describe 'Nqueen' do
     
   end
 
-#  mappings.each do |num, solution|         
+  mappings.each do |num, solution|         
     it "displays the Queens correctly on an n by n chessboard" do
-      test = Nqueen.new(4)
-      test.solve_puzzle.should ==  "**Q*\nQ***\n***Q\n*Q**"
+      test = Nqueen.new(num)
+      test.solve_puzzle.should == solution
     end
-#  end
+  end
 end
