@@ -1,13 +1,14 @@
 class Nqueen
   EMPTY_SPACE_CHAR = '*'
 
-  def solve_puzzle
-    determine_interval_lengths
-    output_board
-  end
-
   def initialize(n)
     @number_of_queens = n
+  end
+
+  def solve_puzzle
+    return "Problem not solvable." if @number_of_queens < 4
+    determine_interval_lengths
+    output_board
   end
 
   def determine_location_of_first_queen
