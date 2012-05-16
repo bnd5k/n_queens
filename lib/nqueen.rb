@@ -68,10 +68,10 @@ class Nqueen
 
   def final_board
     # generates array that contains the solution.  Q's representing where the queen's are positioned.
-    queen_array = board_positions_of_pre_queens
+    pre_queen_array = board_positions_of_pre_queens
     board = [EMPTY_SPACE_CHAR]
     while board.size < @number_of_queens ** 2
-      if queen_array.include?(board.size)
+      if pre_queen_array.include?(board.size)
         new_item = 'Q'
       else
         new_item = EMPTY_SPACE_CHAR
