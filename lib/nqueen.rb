@@ -6,8 +6,12 @@ class Nqueen
   end
 
   def solve_puzzle
+    # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
     return "Problem not solvable." if @number_of_queens < 4
-    output_board
+    solution_as_array = final_board.each_slice(@number_of_queens)
+    output_board = ""
+    answer_row =  solution_as_array.map{|row| row.join}
+    output_board <<  answer_row.join("\n")
   end
 
   def determine_location_of_first_queen
@@ -68,14 +72,6 @@ class Nqueen
       board << new_item
     end
     board
-  end
-
-  def output_board
-    # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
-    solution_as_array = final_board.each_slice(@number_of_queens)
-    output_board = ""
-    answer_row =  solution_as_array.map{|row| row.join}
-    output_board <<  answer_row.join("\n")
   end
 
 end

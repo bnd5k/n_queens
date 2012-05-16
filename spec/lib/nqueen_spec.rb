@@ -37,12 +37,12 @@ describe 'Nqueen' do
     end
   end
 
-  describe '#output_board' do
+  describe '#solve_puzzle' do
     it 'converts the solution array to a printable string' do
       game = Nqueen.new(4)
       example_final_board = ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
       game.stub(:final_board => example_final_board)
-      game.output_board.should == "**Q*\nQ***\n***Q\n*Q**"
+      game.solve_puzzle.should == "**Q*\nQ***\n***Q\n*Q**"
     end
   end
 end
