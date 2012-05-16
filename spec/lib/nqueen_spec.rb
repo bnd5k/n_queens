@@ -28,6 +28,15 @@ describe 'Nqueen' do
     end
   end
 
+  describe '#final_board' do
+    it 'generates the solution as an array' do
+      game = Nqueen.new(4)
+      board_positions_of_queens = [3,5,12,14]
+      game.stub(:board_positions_of_queens => board_positions_of_queens)
+      game.final_board.should == ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
+    end
+  end
+
   describe '#output_board' do
     it 'converts the solution array to a printable string' do
       game = Nqueen.new(4)
