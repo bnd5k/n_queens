@@ -37,19 +37,19 @@ describe 'Nqueen' do
     end
   end
   
-  describe '#board_positions_of_queens' do
+  describe '#board_positions_of_pre_queens' do
     it 'generates an array of the array positions that precede a queen' do
       game = Nqueen.new(4)
       sequence_of_intervals = [3,2,7,2]
       game.stub(:sequence_of_intervals => sequence_of_intervals)
-      game.board_positions_of_queens.should == [2, 4, 11, 13] 
+      game.board_positions_of_pre_queens.should == [2, 4, 11, 13] 
     end
   end
   describe '#final_board' do
     it 'generates the solution as an array' do
       game = Nqueen.new(4)
-      board_positions_of_queens = [2, 4, 11, 13, 20, 22, 29] 
-      game.stub(:board_positions_of_queens => board_positions_of_queens)
+      board_positions_of_pre_queens = [2, 4, 11, 13, 20, 22, 29] 
+      game.stub(:board_positions_of_pre_queens => board_positions_of_pre_queens)
       game.final_board.should == ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
     end
   end

@@ -46,10 +46,12 @@ class Nqueen
     interval_sequence
   end
 
-  def board_positions_of_queens
-    # turns the interval sequence into a list of the positions--not of queens, but of positions prior to a queen.
-    # (Why the position prior? That's because the final_board method relies on the position already being included in the array.)
+  def board_positions_of_pre_queens
+    # turns the interval sequence into a list of the positions prior to a queen.
+    # (Knowing the positions prior to queens allows the programs to pop in
+    # a Queen at the appropriate place.)
     interval_sequence = sequence_of_intervals
+    p interval_sequence
     queen_array = []
     interval_sequence.inject(0) do |sum, location|
       sum += location
@@ -61,7 +63,8 @@ class Nqueen
 
   def final_board
     # generates array that contains the solution.  Q's representing where the queen's are positioned.
-    queen_array = board_positions_of_queens
+    queen_array = board_positions_of_pre_queens
+    p queen_array
     board = [EMPTY_SPACE_CHAR]
     while board.size < @number_of_queens ** 2
       if queen_array.include?(board.size)
