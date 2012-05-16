@@ -19,12 +19,12 @@ describe 'Nqueen' do
   describe '#determine_location_of_first_queen' do
     it "for an even number" do
       game = Nqueen.new(6)
-      game.determine_location_of_first_queen.should == 4
+      game.location_of_first_queen.should == 4
     end
 
     it "for an odd number" do
       game = Nqueen.new(5)
-      game.determine_location_of_first_queen.should == 3
+      game.location_of_first_queen.should == 3
     end
   end
 

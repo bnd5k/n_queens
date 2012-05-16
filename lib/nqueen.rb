@@ -14,7 +14,7 @@ class Nqueen
     output_board <<  answer_row.join("\n")
   end
 
-  def determine_location_of_first_queen
+  def location_of_first_queen
     if @number_of_queens.even?
       ( @number_of_queens / 2 ) + 1 
     else
@@ -22,7 +22,7 @@ class Nqueen
     end
   end
 
-  def determine_interval_lengths
+  def interval_lengths
     #creates the two interval lengths necessary
     if @number_of_queens.even?
       sm_interval = @number_of_queens / 2
@@ -35,9 +35,9 @@ class Nqueen
   end
 
   def sequence_of_intervals
-    #my algo consists of alternating intervals, one large, on small. This method generates that interval sequence as an array
-    first_queen = determine_location_of_first_queen
-    sm_interval, lg_interval = determine_interval_lengths
+    #my algo consists of alternating intervals, one large, on small. This method generates that interval sequence as an array.
+    first_queen = location_of_first_queen
+    sm_interval, lg_interval = interval_lengths
     interval_sequence = [first_queen]
     ( @number_of_queens - 1 ).times do
       interval_sequence << sm_interval
@@ -48,7 +48,7 @@ class Nqueen
 
   def board_positions_of_queens
     # turns the interval sequence into a list of the positions--not of queens, but of positions prior to a queen.
-    # (Why the position prior? That's because the construct_solution_array method relies on the position already being included in the array.)
+    # (Why the position prior? That's because the final_board method relies on the position already being included in the array.)
     interval_sequence = sequence_of_intervals
     queen_array = []
     interval_sequence.inject(0) do |sum, location|
