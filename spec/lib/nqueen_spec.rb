@@ -61,20 +61,20 @@ describe 'Nqueen' do
     end
   end
 
-  describe 'lists #board_positions_of_pre_queens by' do
+describe 'lists #board_positions_prior_to_queens by' do
     it 'converting the sequence of intervals between queens into an array of the positions that precede a queen' do
       game = Nqueen.new(7)
       sequence_of_intervals = [4,4,11,4,11,4,11]
       game.stub(:sequence_of_intervals => sequence_of_intervals)
-      game.board_positions_of_pre_queens.should == [3,7,18,22,33,37,48] 
+      game.board_positions_prior_to_queens.should == [3,7,18,22,33,37,48] 
     end
   end
   
   describe 'constructs the #final_board by' do
     it 'making a long array of *s and Qs' do
       game = Nqueen.new(6)
-      board_positions_of_pre_queens = [3, 6, 16, 19, 29, 32] 
-      game.stub(:board_positions_of_pre_queens => board_positions_of_pre_queens)
+      board_positions_prior_to_queens = [3, 6, 16, 19, 29, 32] 
+      game.stub(:board_positions_prior_to_queens => board_positions_prior_to_queens)
       game.final_board.should == ["*", "*", "*", "Q", "*", "*", "Q", "*", "*", "*", "*", "*", "*", "*", "*", "*", "Q", "*", "*", "Q", "*", "*", "*", "*", "*", "*", "*", "*", "*", "Q", "*", "*", "Q", "*", "*", "*"]
     end
   end
