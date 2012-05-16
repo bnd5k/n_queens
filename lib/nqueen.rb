@@ -2,7 +2,6 @@ class Nqueen
 
   def solve_puzzle
     determine_interval_lengths
-    generate_alternating_sequence_of_intervals
     translate_intervals_into_board_positions
     construct_solution_array
     terminal_state_of_chessboard
@@ -32,21 +31,23 @@ class Nqueen
     end
   end
 
-  def generate_alternating_sequence_of_intervals
+  def sequence_of_intervals
     first_queen = determine_location_of_first_queen
     #my algo consists of alternating intervals, one large, on small. This method generates that interval sequence as an array
-    @interval_sequence = [first_queen]
+    interval_sequence = [first_queen]
     ( @number_of_queens - 1 ).times do
-      @interval_sequence << @sm_interval
-      @interval_sequence << @lg_interval
+      interval_sequence << @sm_interval
+      interval_sequence << @lg_interval
     end
+    interval_sequence
   end
 
   def translate_intervals_into_board_positions
     # turns the interval sequence into a list of the positions--not of queens, but of positions prior to a queen.
     # (Why the position prior? That's because the construct_solution_array method relies on the position already being included in the array.)
+    interval_sequence = sequence_of_intervals
     @queen_array = []
-    @interval_sequence.inject(0) do |sum, location|
+    interval_sequence.inject(0) do |sum, location|
       sum += location
       @queen_array << sum - 1
       sum
