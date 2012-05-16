@@ -34,8 +34,9 @@ class Nqueen
     return sm_interval, lg_interval
   end
 
-  def sequence_of_intervals
-    #my algo consists of alternating intervals, one large, on small. This method generates that interval sequence as an array.
+  def relative_position_of_queens
+    #this method builds an array listing where the queens are located in
+    #relation to one another.  The array is built by taking the position of the first queen and thenadding the interval lengths repeatedly (until the array is as big as it needs to be).
     first_queen = location_of_first_queen
     sm_interval, lg_interval = interval_lengths
     interval_sequence = [first_queen]
@@ -55,7 +56,7 @@ class Nqueen
     # turns the interval sequence into a list of the positions prior to a queen.
     # (Knowing the positions prior to queens allows the programs to pop in
     # a Queen at the appropriate place.)
-    interval_sequence = sequence_of_intervals
+    interval_sequence = relative_position_of_queens
     queen_array = []
     interval_sequence.inject(0) do |sum, location|
       sum += location

@@ -42,25 +42,26 @@ describe 'Nqueen' do
   end
   
   describe '#interval_lengths' do
-    it 'creates a small interval and large one for an even number' do
+    it 'creates a small interval and large one based on an even number of queens' do
       game = Nqueen.new(4)
       game.interval_lengths.should == [2, 7]
     end
 
-    it 'creates a small interval and large one for an even number' do
+    it 'creates a small interval and large one based on an odd number of queens' do
+      game = Nqueen.new(4)
       game = Nqueen.new(5)
       game.interval_lengths.should == [3, 8]
     end
   end
 
-  describe '#sequence_of_intervals' do
+  describe '#relative_position_of_queens' do
     it 'generates an array of the intervals between queens' do
       game = Nqueen.new(4)
       location_of_first_queen = 3
       game.stub(:location_of_first_queen => location_of_first_queen)
       interval_lengths = [2, 7]
       game.stub(:interval_lengths => interval_lengths)
-      game.sequence_of_intervals.should == [3,2,7,2]
+      game.relative_position_of_queens.should == [3,2,7,2]
     end
   end
 
