@@ -2,8 +2,7 @@ class Nqueen
 
   def solve_puzzle
     determine_interval_lengths
-    construct_solution_array
-    terminal_state_of_chessboard
+    output_board
   end
 
   def initialize(n)
@@ -54,27 +53,27 @@ class Nqueen
     queen_array
   end
 
-  def construct_solution_array
+  def final_board
     # generates array that contains the solution.  Q's representing where the queen's are positioned.
     queen_array = board_positions_of_queens
-    @board = [@empty_space]
-    while @board.size < @number_of_queens * @number_of_queens
-      if queen_array.include?(@board.size)
+    board = [@empty_space]
+    while board.size < @number_of_queens * @number_of_queens
+      if queen_array.include?(board.size)
         new_item = 'Q'
       else
         new_item = @empty_space
       end
-      @board << new_item
+      board << new_item
     end
+    board
   end
 
-  def terminal_state_of_chessboard
+  def output_board
     # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
-    solution_as_array = @board.each_slice(@number_of_queens)
-    return_string = ""
+    solution_as_array = final_board.each_slice(@number_of_queens)
+    output_board = ""
     answer_row =  solution_as_array.map{|row| row.join}
-    return_string <<  answer_row.join("\n")
-    return_string
+    output_board <<  answer_row.join("\n")
   end
 
 end
