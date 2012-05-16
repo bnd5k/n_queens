@@ -54,8 +54,8 @@ class Nqueen
 
   def board_positions_of_pre_queens
     # turns the interval sequence into a list of the positions prior to a queen.
-    # (Knowing the positions prior to queens allows the programs to pop in
-    # a Queen at the appropriate place.)
+    # (Knowing the positions prior to queens allows the programs to add queens
+    # to the array at the appropriate place. 
     interval_sequence = relative_position_of_queens
     queen_array = []
     interval_sequence.inject(0) do |sum, location|
@@ -78,7 +78,7 @@ class Nqueen
       end
       board << new_item
     end
-    board
+   board
   end
 
 end

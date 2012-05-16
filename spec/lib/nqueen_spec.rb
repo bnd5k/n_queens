@@ -14,21 +14,17 @@ describe 'Nqueen' do
     it "on a 5 by 5 chessboard" do
       Nqueen.new(5).solve_puzzle.should == "**Q**\nQ****\n***Q*\n*Q***\n****Q"
     end
-    
-    it "on a 6 by 6 chessboard" do
-      Nqueen.new(6).solve_puzzle.should == "***Q**\nQ*****\n****Q*\n*Q****\n*****Q\n**Q***"
-    end
   end
 
   describe '#determine_location_of_first_queen' do
     it "for an even number" do
-      game = Nqueen.new(6)
-      game.location_of_first_queen.should == 4
+      game = Nqueen.new(4)
+      game.location_of_first_queen.should == 3
     end
 
     it "for an odd number" do
-      game = Nqueen.new(5)
-      game.location_of_first_queen.should == 3
+      game = Nqueen.new(7)
+      game.location_of_first_queen.should == 4
     end
   end
 
@@ -56,30 +52,30 @@ describe 'Nqueen' do
 
   describe '#relative_position_of_queens' do
     it 'generates an array of the intervals between queens' do
-      game = Nqueen.new(4)
-      location_of_first_queen = 3
+      game = Nqueen.new(8)
+      location_of_first_queen = 5
       game.stub(:location_of_first_queen => location_of_first_queen)
-      interval_lengths = [2, 7]
+      interval_lengths = [4, 13]
       game.stub(:interval_lengths => interval_lengths)
-      game.relative_position_of_queens.should == [3,2,7,2]
+      game.relative_position_of_queens.should == [5,4,13,4,13,4,13,4]
     end
   end
 
   describe '#board_positions_of_pre_queens' do
     it 'generates an array of the array positions that precede a queen' do
-      game = Nqueen.new(4)
-      sequence_of_intervals = [3,2,7,2]
+      game = Nqueen.new(7)
+      sequence_of_intervals = [4,4,11,4,11,4,11]
       game.stub(:sequence_of_intervals => sequence_of_intervals)
-      game.board_positions_of_pre_queens.should == [2, 4, 11, 13] 
+      game.board_positions_of_pre_queens.should == [3,7,18,22,33,37,48] 
     end
   end
   
   describe '#final_board' do
     it 'generates the solution as an array' do
-      game = Nqueen.new(4)
-      board_positions_of_pre_queens = [2, 4, 11, 13] 
+      game = Nqueen.new(6)
+      board_positions_of_pre_queens = [3, 6, 16, 19, 29, 32] 
       game.stub(:board_positions_of_pre_queens => board_positions_of_pre_queens)
-      game.final_board.should == ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
+      game.final_board.should == ["*", "*", "*", "Q", "*", "*", "Q", "*", "*", "*", "*", "*", "*", "*", "*", "*", "Q", "*", "*", "Q", "*", "*", "*", "*", "*", "*", "*", "*", "*", "Q", "*", "*", "Q", "*", "*", "*"]
     end
   end
 
