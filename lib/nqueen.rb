@@ -7,7 +7,6 @@ class Nqueen
 
   def solve_puzzle
     return "Problem not solvable." if @number_of_queens < 4
-    sm_int, lg_int = determine_interval_lengths
     output_board
   end
 
@@ -22,11 +21,11 @@ class Nqueen
   def determine_interval_lengths
     #creates the two interval lengths necessary
     if @number_of_queens.even?
-      @sm_interval = @number_of_queens / 2
-      @lg_interval = ( @number_of_queens + 1 ) + @sm_interval
+      sm_interval = @number_of_queens / 2
+      lg_interval = ( @number_of_queens + 1 ) + sm_interval
     else
-      @sm_interval = ( @number_of_queens + 1 ) / 2
-      @lg_interval =  @number_of_queens + @sm_interval
+      sm_interval = ( @number_of_queens + 1 ) / 2
+      lg_interval =  @number_of_queens + sm_interval
     end
     return sm_interval, lg_interval
   end
@@ -34,10 +33,11 @@ class Nqueen
   def sequence_of_intervals
     #my algo consists of alternating intervals, one large, on small. This method generates that interval sequence as an array
     first_queen = determine_location_of_first_queen
+    sm_interval, lg_interval = determine_interval_lengths
     interval_sequence = [first_queen]
     ( @number_of_queens - 1 ).times do
-      interval_sequence << @sm_interval
-      interval_sequence << @lg_interval
+      interval_sequence << sm_interval
+      interval_sequence << lg_interval
     end
     interval_sequence
   end
