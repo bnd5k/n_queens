@@ -57,7 +57,7 @@ class Nqueen
     # generates array that contains the solution.  Q's representing where the queen's are positioned.
     queen_array = board_positions_of_queens
     board = [EMPTY_SPACE_CHAR]
-    while board.size < @number_of_queens * @number_of_queens
+    while board.size < @number_of_queens ** 2
       if queen_array.include?(board.size)
         new_item = 'Q'
       else
