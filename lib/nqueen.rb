@@ -1,12 +1,6 @@
 class Nqueen
 
-  def initialize(n)
-    @number_of_queens = n
-    @empty_space = '*'
-  end
-
   def solve_puzzle
-    determine_location_of_first_queen
     determine_interval_lengths
     generate_alternating_sequence_of_intervals
     translate_intervals_into_board_positions
@@ -14,11 +8,16 @@ class Nqueen
     terminal_state_of_chessboard
   end
 
+  def initialize(n)
+    @number_of_queens = n
+    @empty_space = '*'
+  end
+
   def determine_location_of_first_queen
     if @number_of_queens.even?
-      @first_queen_in_array = ( @number_of_queens / 2 ) + 1 
+      ( @number_of_queens / 2 ) + 1 
     else
-      @first_queen_in_array = ( @number_of_queens + 1 ) / 2
+      ( @number_of_queens + 1 ) / 2
     end
   end
 
@@ -34,8 +33,9 @@ class Nqueen
   end
 
   def generate_alternating_sequence_of_intervals
+    first_queen = determine_location_of_first_queen
     #my algo consists of alternating intervals, one large, on small. This method generates that interval sequence as an array
-    @interval_sequence = [@first_queen_in_array]
+    @interval_sequence = [first_queen]
     ( @number_of_queens - 1 ).times do
       @interval_sequence << @sm_interval
       @interval_sequence << @lg_interval
@@ -68,11 +68,11 @@ class Nqueen
 
   def terminal_state_of_chessboard
     # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
-    puts "\n Here is the solution. \n"
     solution_as_array = @board.each_slice(@number_of_queens)
     return_string = ""
-    answer_row = solution_as_array.map{|a| a.join}
-    answer_row.join("\n")
+    answer_row =  solution_as_array.map{|row| row.join}
+    return_string <<  answer_row.join("\n")
+    return_string
   end
 
 end

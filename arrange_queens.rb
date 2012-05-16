@@ -11,5 +11,5 @@ while  n < 4
 end
 
 my_queen = Nqueen.new(n) 
-my_queen.solve_puzzle
-
+puts "\n Here is the solution. \n"
+puts my_queen.solve_puzzle
