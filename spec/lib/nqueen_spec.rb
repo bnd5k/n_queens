@@ -16,7 +16,16 @@ describe 'Nqueen' do
     end
   end
 
-  describe '#determine_location_of_first_queen' do
+  describe 'will #solve_puzzle when it' do
+    it 'converts the solution array to a printable string' do
+      game = Nqueen.new(4)
+      example_final_board = ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
+      game.stub(:final_board => example_final_board)
+      game.solve_puzzle.should == "**Q*\nQ***\n***Q\n*Q**"
+    end
+  end
+
+  describe 'finds the #location_of_first_queen' do
     it "for an even number" do
       game = Nqueen.new(4)
       game.location_of_first_queen.should == 3
@@ -27,31 +36,22 @@ describe 'Nqueen' do
       game.location_of_first_queen.should == 4
     end
   end
-
-  describe '#solve_puzzle' do
-    it 'converts the solution array to a printable string' do
-      game = Nqueen.new(4)
-      example_final_board = ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
-      game.stub(:final_board => example_final_board)
-      game.solve_puzzle.should == "**Q*\nQ***\n***Q\n*Q**"
-    end
-  end
   
-  describe '#interval_lengths' do
-    it 'creates a small interval and large one based on an even number of queens' do
+  describe 'calculates the #length_of_intervals_between_queens' do
+    it 'when there is an even number of queens' do
       game = Nqueen.new(4)
-      game.interval_lengths.should == [2, 7]
+      game.length_of_intervals_between_queens.should == [2, 7]
     end
 
-    it 'creates a small interval and large one based on an odd number of queens' do
+    it 'when there is an odd number of queens' do
       game = Nqueen.new(4)
       game = Nqueen.new(5)
-      game.interval_lengths.should == [3, 8]
+      game.length_of_intervals_between_queens.should == [3, 8]
     end
   end
 
-  describe '#relative_position_of_queens' do
-    it 'generates an array of the intervals between queens' do
+  describe 'calculates the #relative_position_of_queens by' do
+    it 'generating an array consisting of the first queen and alternating instances of the short and long interval' do
       game = Nqueen.new(8)
       location_of_first_queen = 5
       game.stub(:location_of_first_queen => location_of_first_queen)
@@ -61,8 +61,8 @@ describe 'Nqueen' do
     end
   end
 
-  describe '#board_positions_of_pre_queens' do
-    it 'generates an array of the array positions that precede a queen' do
+  describe 'lists #board_positions_of_pre_queens by' do
+    it 'converting the sequence of intervals between queens into an array of the positions that precede a queen' do
       game = Nqueen.new(7)
       sequence_of_intervals = [4,4,11,4,11,4,11]
       game.stub(:sequence_of_intervals => sequence_of_intervals)
@@ -70,8 +70,8 @@ describe 'Nqueen' do
     end
   end
   
-  describe '#final_board' do
-    it 'generates the solution as an array' do
+  describe 'constructs the #final_board by' do
+    it 'making a long array of *s and Qs' do
       game = Nqueen.new(6)
       board_positions_of_pre_queens = [3, 6, 16, 19, 29, 32] 
       game.stub(:board_positions_of_pre_queens => board_positions_of_pre_queens)

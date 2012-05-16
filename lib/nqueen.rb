@@ -6,7 +6,7 @@ class Nqueen
   end
 
   def solve_puzzle
-    # chops the solution array into sub-arrays of n size, then turns them into a string by joining them
+    # chops the solution array into sub-arrays of n size, then turnseach sub-array  into a string
     return "Problem not solvable." if @number_of_queens < 4
     solution_as_array = final_board.each_slice(@number_of_queens)
     output_board = ""
@@ -22,7 +22,7 @@ class Nqueen
     end
   end
 
-  def interval_lengths
+  def length_of_intervals_between_queens 
     #creates the two interval lengths necessary
     if @number_of_queens.even?
       sm_interval = @number_of_queens / 2
@@ -38,7 +38,7 @@ class Nqueen
     #this method builds an array listing where the queens are located in
     #relation to one another.  The array is built by taking the position of the first queen and thenadding the interval lengths repeatedly (until the array is as big as it needs to be).
     first_queen = location_of_first_queen
-    sm_interval, lg_interval = interval_lengths
+    sm_interval, lg_interval = length_of_intervals_between_queens
     interval_sequence = [first_queen]
     ( @number_of_queens/2).times do
       interval_sequence << sm_interval
@@ -49,7 +49,7 @@ class Nqueen
     else
       interval_sequence
     end
-    p interval_sequence
+    interval_sequence
   end
 
   def board_positions_of_pre_queens
