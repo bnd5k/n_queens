@@ -1,4 +1,5 @@
 class Nqueen
+  EMPTY_SPACE_CHAR = '*'
 
   def solve_puzzle
     determine_interval_lengths
@@ -7,7 +8,6 @@ class Nqueen
 
   def initialize(n)
     @number_of_queens = n
-    @empty_space = '*'
   end
 
   def determine_location_of_first_queen
@@ -56,12 +56,12 @@ class Nqueen
   def final_board
     # generates array that contains the solution.  Q's representing where the queen's are positioned.
     queen_array = board_positions_of_queens
-    board = [@empty_space]
+    board = [EMPTY_SPACE_CHAR]
     while board.size < @number_of_queens * @number_of_queens
       if queen_array.include?(board.size)
         new_item = 'Q'
       else
-        new_item = @empty_space
+        new_item = EMPTY_SPACE_CHAR
       end
       board << new_item
     end
