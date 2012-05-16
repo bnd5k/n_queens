@@ -16,9 +16,24 @@ describe 'Nqueen' do
     end
   end
 
-  it "outputs the correct position of the first queen" do
-    test = Nqueen.new(5)
-    test.determine_location_of_first_queen.should == 3
+  describe '#determine_location_of_first_queen' do
+    it "for an even number" do
+      game = Nqueen.new(6)
+      game.determine_location_of_first_queen.should == 4
+    end
+
+    it "for an odd number" do
+      game = Nqueen.new(5)
+      game.determine_location_of_first_queen.should == 3
+    end
   end
 
+  describe '#output_board' do
+    it 'converts the solution array to a printable string' do
+      game = Nqueen.new(4)
+      example_final_board = ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
+      game.stub(:final_board => example_final_board)
+      game.output_board.should == "**Q*\nQ***\n***Q\n*Q**"
+    end
+  end
 end
