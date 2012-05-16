@@ -14,6 +14,10 @@ describe 'Nqueen' do
     it "on a 5 by 5 chessboard" do
       Nqueen.new(5).solve_puzzle.should == "**Q**\nQ****\n***Q*\n*Q***\n****Q"
     end
+    
+    it "on a 6 by 6 chessboard" do
+      Nqueen.new(6).solve_puzzle.should == "***Q**\nQ*****\n****Q*\n*Q****\n*****Q\n**Q***"
+    end
   end
 
   describe '#determine_location_of_first_queen' do
@@ -48,7 +52,7 @@ describe 'Nqueen' do
   describe '#final_board' do
     it 'generates the solution as an array' do
       game = Nqueen.new(4)
-      board_positions_of_pre_queens = [2, 4, 11, 13, 20, 22, 29] 
+      board_positions_of_pre_queens = [2, 4, 11, 13] 
       game.stub(:board_positions_of_pre_queens => board_positions_of_pre_queens)
       game.final_board.should == ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
     end
