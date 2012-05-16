@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/nqueen.rb'
 
 describe 'Nqueen' do
-  describe 'spaces out Queens' do
+  describe 'positions the queens' do
     it "only when there are more than 3 queens" do
       Nqueen.new(3).solve_puzzle.should == "Problem not solvable."
     end
@@ -28,6 +28,23 @@ describe 'Nqueen' do
     end
   end
 
+  describe '#solve_puzzle' do
+    it 'converts the solution array to a printable string' do
+      game = Nqueen.new(4)
+      example_final_board = ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
+      game.stub(:final_board => example_final_board)
+      game.solve_puzzle.should == "**Q*\nQ***\n***Q\n*Q**"
+    end
+  end
+  
+  describe '#board_positions_of_queens' do
+    it 'generates an array of the array positions that precede a queen' do
+      game = Nqueen.new(4)
+      sequence_of_intervals = [3,2,7,2]
+      game.stub(:sequence_of_intervals => sequence_of_intervals)
+      game.board_positions_of_queens.should == [2, 4, 11, 13] 
+    end
+  end
   describe '#final_board' do
     it 'generates the solution as an array' do
       game = Nqueen.new(4)
@@ -37,12 +54,4 @@ describe 'Nqueen' do
     end
   end
 
-  describe '#solve_puzzle' do
-    it 'converts the solution array to a printable string' do
-      game = Nqueen.new(4)
-      example_final_board = ["*", "*", "Q", "*", "Q", "*", "*", "*", "*", "*", "*", "Q", "*", "Q", "*", "*"]
-      game.stub(:final_board => example_final_board)
-      game.solve_puzzle.should == "**Q*\nQ***\n***Q\n*Q**"
-    end
-  end
 end
