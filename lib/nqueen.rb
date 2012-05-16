@@ -7,7 +7,7 @@ class Nqueen
 
   def solve_puzzle
     return "Problem not solvable." if @number_of_queens < 4
-    determine_interval_lengths
+    sm_int, lg_int = determine_interval_lengths
     output_board
   end
 
@@ -28,6 +28,7 @@ class Nqueen
       @sm_interval = ( @number_of_queens + 1 ) / 2
       @lg_interval =  @number_of_queens + @sm_interval
     end
+    return sm_interval, lg_interval
   end
 
   def sequence_of_intervals
