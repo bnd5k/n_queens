@@ -48,7 +48,7 @@ class Nqueen
     else
       interval_sequence
     end
-    interval_sequence
+    p interval_sequence
   end
 
   def board_positions_of_pre_queens

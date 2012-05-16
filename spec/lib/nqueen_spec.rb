@@ -41,6 +41,18 @@ describe 'Nqueen' do
     end
   end
   
+  describe '# sequence_of_intervals' do
+    it 'generates an array of the intervals between queens' do
+      game = Nqueen.new(4)
+      location_of_first_queen = 3
+      game.stub(:location_of_first_queen => location_of_first_queen)
+      interval_lengths = 2, 7
+     # sm_interval = 2
+     #i lg_interval = 7
+      game.stub(:interval_lengths => interval_lengths)
+      game.sequence_of_intervals.should == [3,2,7,2]
+    end
+  end
   describe '#board_positions_of_pre_queens' do
     it 'generates an array of the array positions that precede a queen' do
       game = Nqueen.new(4)
