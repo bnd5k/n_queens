@@ -6,7 +6,6 @@ class Nqueen
   end
 
   def solve_puzzle
-    # chops the solution array into sub-arrays of n size and turns each sub-array into a string
     return "Problem not solvable." if @number_of_queens < 4
     solution_as_array = final_board.each_slice(@number_of_queens)
     output_board = ""
@@ -34,7 +33,6 @@ class Nqueen
   end
 
   def relative_position_of_queens
-    #builds an array that lists where the queens are located in relation to one another
     first_queen = location_of_first_queen
     sm_interval, lg_interval = length_of_intervals_between_queens
     interval_sequence = [first_queen]
@@ -42,17 +40,22 @@ class Nqueen
       interval_sequence << sm_interval
       interval_sequence << lg_interval
     end
-    if @number_of_queens.even?
-      interval_sequence.pop
-    else
-      interval_sequence
-    end
     interval_sequence
+  end
+
+  def tidy_array_of_relative_position_of_queens
+    queen_position_array = relative_position_of_queens
+    if @number_of_queens.even?
+      queen_position_array.pop
+    else
+      queen_position_array 
+    end
+    queen_position_array 
   end
 
   def board_positions_prior_to_queens
     # (Knowing the positions prior to queens allows the final_board method to create an array with queens in the appropriate places. 
-    interval_sequence = relative_position_of_queens
+    interval_sequence = tidy_array_of_relative_position_of_queens
     queen_array = []
     interval_sequence.inject(0) do |sum, location|
       sum += location

@@ -44,7 +44,6 @@ describe 'Nqueen' do
     end
 
     it 'when there is an odd number of queens' do
-      game = Nqueen.new(4)
       game = Nqueen.new(5)
       game.length_of_intervals_between_queens.should == [3, 8]
     end
@@ -57,15 +56,31 @@ describe 'Nqueen' do
       game.stub(:location_of_first_queen => location_of_first_queen)
       interval_lengths = [4, 13]
       game.stub(:interval_lengths => interval_lengths)
-      game.relative_position_of_queens.should == [5,4,13,4,13,4,13,4]
+      game.relative_position_of_queens.should == [5,4,13,4,13,4,13,4,13]
     end
   end
 
-describe 'lists #board_positions_prior_to_queens by' do
+  describe 'converts a big array into a #tidy_array_of_relative_position_of_queens' do
+    it 'when there is an even number of queens' do
+      game = Nqueen.new(8)
+      queen_position_array = [5,4,13,4,13,4,13,4,13]
+      game.stub(:queen_position_array => queen_position_array)
+      game.tidy_array_of_relative_position_of_queens.should == [5,4,13,4,13,4,13,4]
+    end
+
+    it 'when there is an odd number of queens' do
+      game = Nqueen.new(5)
+      relative_position_of_queens = [3,3,8,3,8]
+      game.stub(:relative_position_of_queens  => relative_position_of_queens)
+      game.tidy_array_of_relative_position_of_queens.should == [3,3,8,3,8] 
+    end
+  end
+
+  describe 'lists #board_positions_prior_to_queens by' do
     it 'converting the sequence of intervals between queens into an array of the positions that precede a queen' do
       game = Nqueen.new(7)
-      sequence_of_intervals = [4,4,11,4,11,4,11]
-      game.stub(:sequence_of_intervals => sequence_of_intervals)
+      tidy_array_of_relative_position_of_queens= [4,4,11,4,11,4,11]
+      game.stub(:tidy_array_of_relative_position_of_queens => tidy_array_of_relative_position_of_queens)
       game.board_positions_prior_to_queens.should == [3,7,18,22,33,37,48] 
     end
   end
