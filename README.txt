@@ -1,6 +1,6 @@
-This program solves the n-queens problem.  Solving the problem requires
+This program solves the n queens problem.  Solving the problem requires
 generating a chess board that has n rows and n columns, then positioning 
-n amount of queens on that board in such a way that no queen is threatening 
+n queens on the board in such a way that no queen is threatening 
 another queen.
 
 Traditionally, the user places all the queens on the first row of the 
