@@ -43,30 +43,20 @@ class Nqueen
     interval_sequence
   end
 
-  def tidy_array_of_relative_position_of_queens
-    queen_position_array = relative_position_of_queens
-    if @number_of_queens.even?
-      queen_position_array.pop
-    else
-      queen_position_array 
-    end
-    queen_position_array 
-  end
-
   def board_positions_prior_to_queens
     # (Knowing the positions prior to queens allows the final_board method to create an array with queens in the appropriate places. 
-    interval_sequence = tidy_array_of_relative_position_of_queens
+    interval_sequence = relative_position_of_queens 
     queen_array = []
     interval_sequence.inject(0) do |sum, location|
       sum += location
       queen_array << sum - 1
       sum
     end
-    queen_array
+    @number_of_queens.even? ? queen_array.pop : queen_array 
+    queen_array 
   end
 
   def final_board
-    # generates array consisting of *'s and Q's in the correct order
     pre_queen_array = board_positions_prior_to_queens 
     board = [EMPTY_SPACE_CHAR]
     while board.size < @number_of_queens ** 2
